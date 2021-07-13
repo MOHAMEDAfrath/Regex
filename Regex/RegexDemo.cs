@@ -63,7 +63,7 @@ namespace RegexDemoOperations
         }
         public static void PhoneNumberValidation()
         {
-            string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91 98415223"};
+            string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91-98415223"};
             string pattern = @"^[91]+[\s]+[0-9]{10}$";
             Regex regex = new Regex(pattern);
             for (int i = 0; i < number.Length; i++)
@@ -79,6 +79,24 @@ namespace RegexDemoOperations
                 }
             }
         }
+        public static void Password()
+        {
+            string[] password = {"afrath1-_A","Hello_11","Hello_World1","NoWay_1123","H@1-23467a-","@hihello12=" };
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[() @ = - _]{1})[a-z A-Z 0-9 @ () = - _]{8,}$";
+            Regex regex = new Regex(pattern);
+            for (int i = 0; i < password.Length; i++)
+            {
+                Match match = regex.Match(password[i]);
+                if (match.Success)
+                {
+                    Console.WriteLine(password[i] + " ----->Valid");
+                }
+                else
+                {
+                    Console.WriteLine(password[i] + " ----->Invalid");
+                }
+            }
+        } 
 
 
 

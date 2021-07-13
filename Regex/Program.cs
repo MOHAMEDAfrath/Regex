@@ -19,6 +19,9 @@ namespace RegexDemoOperations
             Console.WriteLine("****Phone number Verification****");
             RegexDemo.PhoneNumberValidation();
             Console.WriteLine(" ");
+            Console.WriteLine("****Password Verification****");
+            RegexDemo.Password();
+            Console.WriteLine(" ");
             
         }
     }
