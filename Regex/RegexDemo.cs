@@ -61,6 +61,24 @@ namespace RegexDemoOperations
             }
 
         }
+        public static void PhoneNumberValidation()
+        {
+            string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91 98415223"};
+            string pattern = @"^[91]+[\s]+[0-9]{10}$";
+            Regex regex = new Regex(pattern);
+            for (int i = 0; i < number.Length; i++)
+            {
+                Match match = regex.Match(number[i]);
+                if (match.Success)
+                {
+                    Console.WriteLine(number[i] + " ----->Valid");
+                }
+                else
+                {
+                    Console.WriteLine(number[i] + " ----->Invalid");
+                }
+            }
+        }
 
 
 
