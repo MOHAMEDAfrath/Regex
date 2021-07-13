@@ -14,8 +14,7 @@ namespace RegexDemoOperations
             RegexDemo.CheckLastName();
             Console.WriteLine(" ");
             Console.WriteLine("****Email Verification****");
-            RegexDemo.MailVerification();
-            Console.WriteLine(" ");
+            
         }
     }
 }
