@@ -7,44 +7,68 @@ using System.Threading.Tasks;
 
 namespace RegexDemoOperations
 {
-    class RegexDemo
+    public class RegexDemo
     {
-        public static void CheckFirstName()
+        public static string CheckFirstName()
         {
-            string[] firstName = { "Ram", "Afrath", "-Ram", "1Kumar", "R", "Mohamed","ashwik","A23rock","R  ","a{}2{D}","RA","Ar","RAM","Ramu"};
+            string result = null;
+            string[] firstName = { "Ram", "Afrath", "-Ram", "1Kumar", "R", "Mohamed", "ashwik", "A23rock", "R  ", "a{}2{D}", "RA", "Ar", "RAM", "Ramu" };
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
-            for (int i = 0; i < firstName.Length; i++)
+            try
             {
-                Match match = regex.Match(firstName[i]);
-                if (match.Success)
+                for (int i = 0; i < firstName.Length; i++)
                 {
-                    Console.WriteLine(firstName[i]+" ----->Valid");
+                    Match match = regex.Match(firstName[i]);
+                    if (match.Success)
+                    {
+                        Console.WriteLine(firstName[i] + " ----->Valid");
+                        result = "Valid";
+                    }
+                    else
+                    {
+                        Console.WriteLine(firstName[i] + " ----->Invalid");
+                        result = "Invalid";
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(firstName[i] + " ----->Invalid");
-                }
+                firstName[14] = "hi";
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                result = ex.Message;
+            }
+            return result;
+
         }
         public static void CheckLastName()
         {
-            string[] lastName = { "Ram", "Afrath", "-Ram", "1Kumar", "R", "Mohamed", "ashwik", "A23rock", "R  ", "a{}2{D}", "RA", "Ar", "RAM", "Ramu" };
+
+            string[] lastName = { "Ram", "Afrath", "-Ram", "1Kumar", "R", "Mohamed", "ashwik", "A23rock", "R  ", "a{}2{D}", "RA", "Ar", "RAM", "Ramu", "" };
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
             for (int i = 0; i < lastName.Length; i++)
             {
-                Match match = regex.Match(lastName[i]);
-                if (match.Success)
+                if (lastName[i] != "")
                 {
-                    Console.WriteLine(lastName[i] + " ----->Valid");
+                    Match match = regex.Match(lastName[i]);
+                    if (match.Success)
+                    {
+                        Console.WriteLine(lastName[i] + " ----->Valid");
+                    }
+                    else
+                    {
+                        Console.WriteLine(lastName[i] + " ----->Invalid");
+                    }
+
                 }
                 else
                 {
-                    Console.WriteLine(lastName[i] + " ----->Invalid");
+                    throw new RegexCustomException(RegexCustomException.ExceptionType.EMPTY_MESSAGE, "Empty name");
                 }
             }
+
         }
         public static void MailVerification()
-        {
+        {   
+            string result = null;
             string[] email = { "abc@gmail.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@yahoo.com", "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com", "abc", "abc@.com.my", "abc123@.com", "abc123@.com.com", "abc()*@gmail.com", ".abc@abc.com", "abc@%*.com", "abc..2002@gmail.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au" };
             Regex regex = new Regex(@"(^[a-z]+)(([\. \+ \-]?[a-z A-Z 0-9])*)@(([0-9 a-z]+[\.]+[a-z]{3})+([\.]+[a-z]{2,3})?$)");
             for (int i = 0; i < email.Length; i++)
@@ -57,31 +81,43 @@ namespace RegexDemoOperations
                 else
                 {
                     Console.WriteLine(email[i] + " ----->Invalid");
+                    result = "Invalid";
                 }
             }
-
+            if (result == "Invalid")
+            {
+                throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_EMAIL, "Emails are invalid");
+            }
         }
+  
         public static void PhoneNumberValidation()
         {
-            string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91-98415223"};
+            string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91-98415223",null};
             string pattern = @"^[91]+[\s]+[0-9]{10}$";
             Regex regex = new Regex(pattern);
             for (int i = 0; i < number.Length; i++)
             {
-                Match match = regex.Match(number[i]);
-                if (match.Success)
+                if (number[i] != null)
                 {
-                    Console.WriteLine(number[i] + " ----->Valid");
+                    Match match = regex.Match(number[i]);
+                    if (match.Success)
+                    {
+                        Console.WriteLine(number[i] + " ----->Valid");
+                    }
+                    else
+                    {
+                        Console.WriteLine(number[i] + " ----->Invalid");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine(number[i] + " ----->Invalid");
+                    throw new RegexCustomException(RegexCustomException.ExceptionType.NULL_MESSAGE, "Null");
                 }
             }
         }
         public static void Password()
         {
-            string[] password = { "afrath1-_A", "Hello_11", "Hello_World1", "NoWay_1123", "H@1-23467a-", "Hello@=123", "(Hello@123", "Hi_Jk012)/" };
+            string[] password = { "afrath1-_A", "Hello_11", "Hello_World1", "NoWay_1123", "H@1-23467a-", "Hello!@123", "(Hello@123", "Hi_Jk012)/" };
             string pattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8}$";
             Regex regex = new Regex(pattern);
             for (int i = 0; i < password.Length; i++)
