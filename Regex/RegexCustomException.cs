@@ -10,7 +10,7 @@ namespace RegexDemoOperations
     {
         public enum ExceptionType
         {
-            EMPTY_MESSAGE,NULL_MESSAGE,INVALID_EMAIL
+            EMPTY_MESSAGE,NULL_MESSAGE,INVALID_EMAIL,INVALID_PASSWORD
         }
         ExceptionType exceptiontype;
         public RegexCustomException(ExceptionType exception, string message) : base(message)
