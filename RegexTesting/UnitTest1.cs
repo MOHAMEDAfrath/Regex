@@ -53,5 +53,20 @@ namespace RegexTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        [TestMethod]
+        public void TestMethodPassword()
+        {
+
+            try
+            {
+                RegexDemo.Password();
+            }
+            catch (RegexCustomException ex)
+            {
+                string expected = "Invalid Password";
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }

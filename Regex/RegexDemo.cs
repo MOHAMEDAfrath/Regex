@@ -117,8 +117,9 @@ namespace RegexDemoOperations
         }
         public static void Password()
         {
+            string passwordResult = null;
             string[] password = { "afrath1-_A", "Hello_11", "Hello_World1", "NoWay_1123", "H@1-23467a-", "Hello!@123", "(Hello@123", "Hi_Jk012)/" };
-            string pattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8}$";
+            string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
             Regex regex = new Regex(pattern);
             for (int i = 0; i < password.Length; i++)
             {
@@ -130,8 +131,11 @@ namespace RegexDemoOperations
                 else
                 {
                     Console.WriteLine(password[i] + " ----->Invalid");
+                    passwordResult = "Invalid";
                 }
             }
+            if (passwordResult == "Invalid")
+                throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_PASSWORD, "Invalid Password");
         } 
 
 
