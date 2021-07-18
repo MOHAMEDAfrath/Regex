@@ -5,7 +5,7 @@ namespace RegexDemoOperations
     class Program
     {
         static void Main(string[] args)
-        {
+        {/*
             Console.WriteLine("Welcome to regex");
             Console.WriteLine("****First Name Validation****");
             RegexDemo.CheckFirstName();
@@ -22,6 +22,7 @@ namespace RegexDemoOperations
             Console.WriteLine("****Password Verification****");
             RegexDemo.Password();
             Console.WriteLine(" ");
+            */
             
         }
     }
