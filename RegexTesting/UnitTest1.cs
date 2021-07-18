@@ -6,6 +6,7 @@ namespace RegexTesting
     [TestClass]
     public class UnitTest1
     {
+        //Test for valid first name
         [TestMethod]
         public void TestMethodforValidFirstName()
         {
@@ -14,6 +15,7 @@ namespace RegexTesting
             Assert.AreEqual(expected, actual);
 
         }
+        // Test for invalid first name
         [TestMethod]
         public void TestMethodforInValidFirstName()
         {
@@ -22,6 +24,7 @@ namespace RegexTesting
             Assert.AreEqual(expected, actual);
 
         }
+        //Test for last name
         [TestMethod]
         public void TestMethodforLastName()
         {
@@ -35,6 +38,7 @@ namespace RegexTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        //test for invalid last name
         [TestMethod]
         public void TestMethodforInvalidLastName()
         {
@@ -48,7 +52,7 @@ namespace RegexTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
-
+        //Test for empty name
         [TestMethod]
         public void TestMethodforEmptyName()
         {
@@ -62,6 +66,7 @@ namespace RegexTesting
             }
 
         }
+        //Test for Valid Phonenumber
         [TestMethod]
         public void TestMethodforValidPhoneNumber()
         {
@@ -70,6 +75,7 @@ namespace RegexTesting
             Assert.AreEqual(actual, expected); 
 
         }
+        //Test for invalid phone number
         [TestMethod]
         public void TestMethodforInvalidPhoneNumber()
         {
@@ -86,6 +92,7 @@ namespace RegexTesting
             
 
         }
+        //test for null phone number
         [TestMethod]
         public void TestMethodforNullPhoneNumber()
         {
@@ -100,6 +107,7 @@ namespace RegexTesting
             }
 
         }
+        //test for invalid email
         [TestMethod]
         public void TestInvalidEmail()
         {
@@ -114,6 +122,7 @@ namespace RegexTesting
             }
 
         }
+        //Test for valid email
         [TestMethod]
         public void TestEmail()
         {
@@ -122,6 +131,7 @@ namespace RegexTesting
             Assert.AreEqual(actual, expected);
 
         }
+        //Test for valid password
         [TestMethod]
         public void TestMethodPassword()
         {
@@ -135,6 +145,7 @@ namespace RegexTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        //Test for invalid password
         [TestMethod]
         public void TestMethodInvalidPassword()
         {
@@ -148,6 +159,7 @@ namespace RegexTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        //test for object creation for RegexDemo class
         [TestMethod]
         public void TestCreateObjectWithReflections()
         {
@@ -156,6 +168,7 @@ namespace RegexTesting
             expected.Equals(actual);
 
         }
+        //Test for parameterconstructor invoked using object created
         [TestMethod]
         public void TestParameterConstructor()
         {

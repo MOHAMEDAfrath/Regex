@@ -10,14 +10,17 @@ namespace RegexDemoOperations
     public class RegexDemo
     {
         string message;
+        //Default Constructor
         public RegexDemo()
         {
 
         }
+        //Parameterized Constructor
         public RegexDemo(string message)
         {
             this.message = message;
         }
+        //checks first name
         public static string CheckFirstName(string firstName)
         {
             string result = "Valid";
@@ -36,6 +39,7 @@ namespace RegexDemoOperations
             return result;
 
         }
+        //checks last name
         public static string CheckLastName(string lastName)
         {
             string result = "Valid";
@@ -66,7 +70,7 @@ namespace RegexDemoOperations
         }
             
 
-        
+        //checks for valid email
         public static string MailVerification(string email)
         {
             string result = "Valid";
@@ -91,9 +95,7 @@ namespace RegexDemoOperations
                 return result;
             }
         }
-     
-
-  
+        //Checks for proper phonenumber
         public static string PhoneNumberValidation(string number)
         {
             string result = "Valid";
@@ -125,6 +127,7 @@ namespace RegexDemoOperations
             
             
         }
+        //Checks for proper Password
         public static string Password(string password)
         {
             string passwordResult = "Valid";
