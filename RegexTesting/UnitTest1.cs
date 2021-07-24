@@ -132,6 +132,7 @@ namespace RegexTesting
             Assert.AreEqual(actual, expected);
 
         }
+        //tests for multiple valid emails
         [TestMethod]
         public void TestMultipleEmail()
         {
@@ -141,6 +142,7 @@ namespace RegexTesting
             Assert.AreEqual(actual, expected);
 
         }
+        //test for multiple invalid emails
         [TestMethod]
         public void NegativeTestMultipleEmail()
         {
