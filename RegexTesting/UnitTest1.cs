@@ -137,7 +137,7 @@ namespace RegexTesting
         public void TestMultipleEmail()
         {
             string[] input = { "abc@gmail.com", "abc.afr@gmail.com", "abc@gmail.com.in" };
-            string actual = RegexDemo.MailVerification(input);
+            string actual = RegexDemo.MultipleMailVerification(input);
             string expected = "Valid";
             Assert.AreEqual(actual, expected);
 
@@ -149,7 +149,7 @@ namespace RegexTesting
             string[] input = { "abc.@gmail.com", "abc.afrgmail.com", "abc@gmail.com.in.in" };
             try
             {
-                 RegexDemo.MailVerification(input);
+                 RegexDemo.MultipleMailVerification(input);
             }catch(RegexCustomException ex)
             {
 

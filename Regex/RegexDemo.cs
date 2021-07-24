@@ -20,27 +20,27 @@ namespace RegexDemoOperations
         {
             this.message = message;
         }
-        //checks first name
-        public static string CheckFirstName(string firstName)
-        {
-            string result = "Valid";
-            Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
-            Match match = regex.Match(firstName);
-            if (match.Success)
-            {
-                Console.WriteLine(firstName + " ----->Valid");
-            }
-            else
-            {
-                Console.WriteLine(firstName + " ----->Invalid");
-                result = "Invalid";
+        //checks first name(Lambda expression is used for functions)
+        public static Func<string, string> CheckFirstName = (firstName) =>
+         {
+             string result = "Valid";
+             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
+             Match match = regex.Match(firstName);
+             if (match.Success)
+             {
+                 Console.WriteLine(firstName + " ----->Valid");
+             }
+             else
+             {
+                 Console.WriteLine(firstName + " ----->Invalid");
+                 result = "Invalid";
 
-            }
-            return result;
+             }
+             return result;
 
-        }
-        //checks last name
-        public static string CheckLastName(string lastName)
+         };
+        //checks last name (Lambda expression is used for functions)
+        public static Func<string, string> CheckLastName = (lastName) =>
         {
             string result = "Valid";
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
@@ -67,11 +67,10 @@ namespace RegexDemoOperations
             {
                 throw new RegexCustomException(RegexCustomException.ExceptionType.EMPTY_MESSAGE, "Empty name");
             }
-        }
-            
 
-        //checks for valid email
-        public static string MailVerification(string email)
+        };
+        //checks for valid email(Lambda expression is used for functions)
+        public static Func<string, string> MailVerification = (email) =>
         {
             string result = "Valid";
             Regex regex = new Regex(@"(^[a-z]+)(([\. \+ \-]?[a-z A-Z 0-9])*)@(([0-9 a-z]+[\.]+[a-z]{3})+([\.]+[a-z]{2,3})?$)");
@@ -82,7 +81,7 @@ namespace RegexDemoOperations
             }
             else
             {
-                Console.WriteLine(email+ " ----->Invalid");
+                Console.WriteLine(email + " ----->Invalid");
                 result = "Invalid";
             }
 
@@ -94,9 +93,10 @@ namespace RegexDemoOperations
             {
                 return result;
             }
-        }
-        //Overloading to check multiple mails.
-        public static string MailVerification(string[] email)
+
+        };
+        //to check multiple mails(Lambda expression is used for functions)
+        public static Func<string[], string> MultipleMailVerification = (email) =>
         {
             string result = "Valid";
             Regex regex = new Regex(@"(^[a-z]+)(([\. \+ \-]?[a-z A-Z 0-9])*)@(([0-9 a-z]+[\.]+[a-z]{3})+([\.]+[a-z]{2,3})?$)");
@@ -122,9 +122,11 @@ namespace RegexDemoOperations
             {
                 return result;
             }
-        }
-        //Checks for proper phonenumber
-        public static string PhoneNumberValidation(string number)
+
+        };
+
+        //Checks for proper phonenumber(Lambda expression is used for functions)
+        public static Func<string, string> PhoneNumberValidation = (number) =>
         {
             string result = "Valid";
             //string[] number = { "91 9941478794", "91 7415289635", "91 7145484749", "918745123698", "91ABCD","91 87478578412" ,"91-98415223",null};
@@ -152,34 +154,34 @@ namespace RegexDemoOperations
             {
                 throw new RegexCustomException(RegexCustomException.ExceptionType.NULL_MESSAGE, "Null");
             }
-            
-            
-        }
-        //Checks for proper Password
-        public static string Password(string password)
+        };
+
+
+        //Checks for proper Password(Lambda expression is used for functions)
+        public static Func<string, string> Password = (password) =>
         {
             string passwordResult = "Valid";
             string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
             Regex regex = new Regex(pattern);
-            
-                Match match = regex.Match(password);
-                if (match.Success)
-                {
-                    Console.WriteLine(password + " ----->Valid");
-                }
-                else
-                {
-                    Console.WriteLine(password + " ----->Invalid");
-                    passwordResult = "Invalid";
-                }
-            
+
+            Match match = regex.Match(password);
+            if (match.Success)
+            {
+                Console.WriteLine(password + " ----->Valid");
+            }
+            else
+            {
+                Console.WriteLine(password + " ----->Invalid");
+                passwordResult = "Invalid";
+            }
+
             if (passwordResult == "Invalid")
                 throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_PASSWORD, "Invalid Password");
             else
             {
                 return passwordResult;
             }
-        } 
+        };
 
 
 
