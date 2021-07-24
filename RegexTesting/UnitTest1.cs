@@ -66,6 +66,7 @@ namespace RegexTesting
             }
 
         }
+
         //Test for Valid Phonenumber
         [TestMethod]
         public void TestMethodforValidPhoneNumber()
@@ -131,8 +132,35 @@ namespace RegexTesting
             Assert.AreEqual(actual, expected);
 
         }
-        //Test for valid password
         [TestMethod]
+        public void TestMultipleEmail()
+        {
+            string[] input = { "abc@gmail.com", "abc.afr@gmail.com", "abc@gmail.com.in" };
+            string actual = RegexDemo.MailVerification(input);
+            string expected = "Valid";
+            Assert.AreEqual(actual, expected);
+
+        }
+        [TestMethod]
+        public void NegativeTestMultipleEmail()
+        {
+            string[] input = { "abc.@gmail.com", "abc.afrgmail.com", "abc@gmail.com.in.in" };
+            try
+            {
+                 RegexDemo.MailVerification(input);
+            }catch(RegexCustomException ex)
+            {
+
+                string expected = "Emails in the array are invalid";
+
+                Assert.AreEqual(expected, ex.Message);
+
+            }
+            
+        }
+
+            //Test for valid password
+            [TestMethod]
         public void TestMethodPassword()
         {
             try

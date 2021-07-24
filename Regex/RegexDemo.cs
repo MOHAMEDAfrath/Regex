@@ -95,6 +95,34 @@ namespace RegexDemoOperations
                 return result;
             }
         }
+        //Overloading to check multiple mails.
+        public static string MailVerification(string[] email)
+        {
+            string result = "Valid";
+            Regex regex = new Regex(@"(^[a-z]+)(([\. \+ \-]?[a-z A-Z 0-9])*)@(([0-9 a-z]+[\.]+[a-z]{3})+([\.]+[a-z]{2,3})?$)");
+            for (int i = 0; i < email.Length; i++)
+            {
+                Match match = regex.Match(email[i]);
+                if (match.Success)
+                {
+                    Console.WriteLine(email[i] + " ----->Valid");
+                }
+                else
+                {
+                    Console.WriteLine(email[i] + " ----->Invalid");
+                    result = "Invalid";
+                }
+            }
+
+            if (result == "Invalid")
+            {
+                throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_EMAIL, "Emails in the array are invalid");
+            }
+            else
+            {
+                return result;
+            }
+        }
         //Checks for proper phonenumber
         public static string PhoneNumberValidation(string number)
         {
